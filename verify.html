@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Verify Email - Telvo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffdf0;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      max-width: 450px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: #1e3a8a;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Email Verification</h2>
+    <p id="msg">A code has been sent to your Gmail.</p>
+    <input type="text" id="code" placeholder="Enter verification code" />
+    <button onclick="verifyCode()">Verify</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("telvoUser"));
+    document.getElementById("msg").innerText = `A verification code has been sent to ${user.email}`;
+
+    function verifyCode() {
+      const code = document.getElementById("code").value.trim();
+      if (code === "123456") {
+        document.getElementById("status").innerHTML = `<b>Verification successful!</b><br>Welcome, ${user.username}.`;
+      } else {
+        document.getElementById("status").innerHTML = `<span style="color:red;">Invalid code. Try again.</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
