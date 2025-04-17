@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Telvo - Create Account</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      max-width: 450px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #1e3a8a;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: #1e3a8a;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create Your Telvo Account</h2>
+    <input type="text" id="username" placeholder="Enter username" />
+    <input type="password" id="password" placeholder="Enter password" />
+    <input type="email" id="email" placeholder="Enter your Gmail" />
+    <input type="text" id="referral" placeholder="Referral Code (Optional)" />
+    <button onclick="createAccount()">Create Account</button>
+  </div>
+
+  <script>
+    function createAccount() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const referral = document.getElementById("referral").value.trim();
+
+      if (!username || !password || !email) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      // Save data in localStorage for use in the next page
+      localStorage.setItem("telvoUser", JSON.stringify({ username, email, referral }));
+
+      // Redirect to verify page
+      window.location.href = "verify.html";
+    }
+  </script>
+</body>
+</html>
